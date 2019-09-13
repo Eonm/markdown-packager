@@ -17,4 +17,4 @@ deploy:
   on:
     repo: Eonm/markdown-packager
     all_branches: true
-tags: true
+    tags: true
