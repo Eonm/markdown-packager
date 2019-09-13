@@ -1,0 +1,5 @@
+---
+new_entry_1: entry_value_1
+new_entries:
+  - entry_1
+  - entry_2

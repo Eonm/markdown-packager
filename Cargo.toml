@@ -1,0 +1,21 @@
+[package]
+name = "markdown-packager"
+version = "0.0.1"
+authors = ["eonm <eon.mathis@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pulldown-cmark = {version = "0.5.2", default-features = false}
+serde_yaml = "*"
+serde = "*"
+rustc-serialize = "*"
+log = "*"
+reqwest = "*"
+tempdir = "*"
+uuid = "*"
+colored = "*"
+url = "*"
+pulldown-cmark-to-cmark = "*"
+clap = "*"
