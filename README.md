@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Eonm/markdown-packager.svg?branch=master)](https://travis-ci.org/Eonm/markdown-packager)
+[![Coverage Status](https://coveralls.io/repos/github/Eonm/markdown-packager/badge.svg)](https://coveralls.io/github/Eonm/markdown-packager)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # 📦 Markdown Packager
