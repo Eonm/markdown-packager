@@ -183,7 +183,7 @@ mod test_md_file {
     fn should_add_css() {
         let markdown_input = "# Title\n\nLorem ispum";
         let expected_output =
-            "# Title\n\nLorem ispum\n\n<style>\np {\n  background-color: red;\n}</style>\n";
+            "# Title\n\nLorem ispum\n\n<style>\np {background-color: red;}</style>\n";
 
         let mut document = Document::new(markdown_input, DownloadMod::Keep, "./");
         document.embed(Some(vec!["./test/files/fake_css.css"]));

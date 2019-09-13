@@ -1,6 +1,6 @@
 [package]
 name = "markdown-packager"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["eonm <eon.mathis@gmail.com>"]
 edition = "2018"
 
@@ -19,3 +19,9 @@ colored = "*"
 url = "*"
 pulldown-cmark-to-cmark = "*"
 clap = "*"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3

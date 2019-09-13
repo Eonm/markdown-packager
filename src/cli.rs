@@ -2,7 +2,7 @@ use clap::{App, Arg, SubCommand};
 
 pub fn build_cli() -> App<'static, 'static> {
     App::new("markdown_packager")
-        .version("0.0.1")
+        .version("0.0.2")
         .author("Eonm <eon.mathis@gmail.com>")
         .about("Link and embed files inside your markdown documents")
         .arg(
