@@ -1,0 +1,20 @@
+language: rust
+os:
+- windows
+- linux
+sudo: false
+cache: cargo
+script:
+- cargo build --release --verbose --all
+- cargo test --verbose --all
+deploy:
+  provider: releases
+  api_key: $GITHUB_API_KEY
+  file:
+  - target/release/markdown-packager
+  - target/release/markdown-packager.exe
+  skip_cleanup: true
+  on:
+    repo: Eonm/markdown-packager
+    all_branches: true
+tags: true
