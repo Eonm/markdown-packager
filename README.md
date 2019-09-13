@@ -6,6 +6,16 @@
 
 Link and embed files inside your markdown documents
 
+## Install
+
+**On linux**
+
+```sh
+curl -L https://github.com/Eonm/markdown-packager/releases/latest/download/markdown-packager --output markdown-packager
+chmod +x markdown-packager
+sudo mv -u markdown-packager /usr/bin/
+```
+
 ## Pack
 
 The `pack` sub command allows you to embed files inside your markdown file.
