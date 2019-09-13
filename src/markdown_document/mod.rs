@@ -195,7 +195,7 @@ mod test_md_file {
     fn should_add_js() {
         let markdown_input = "# Title\n\nLorem ispum";
         let expected_output =
-            "# Title\n\nLorem ispum\n\n<script>\nconst a = \"value\";</script>\n";
+            "# Title\n\nLorem ispum\n\n<script>\nconst a = \"value\";\n</script>\n";
 
         let mut document = Document::new(markdown_input, DownloadMod::Keep, "./");
         document.embed(Some(vec!["./test/files/fake_script.js"]));
