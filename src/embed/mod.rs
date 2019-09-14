@@ -7,6 +7,7 @@ use crate::yaml_header;
 use pulldown_cmark::CowStr;
 use pulldown_cmark::Event;
 
+#[derive(PartialEq, Debug)]
 pub enum RessourceType {
     Javascript(String),
     Css(String),
@@ -61,5 +62,25 @@ impl RessourceType {
             RessourceType::Yaml(content) => content,
             RessourceType::Unknown(content) => content,
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn should_match_ressource_type() {
+        let file_content = " \n".to_string();
+
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.js"), RessourceType::Javascript(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.md"), RessourceType::Md(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.html"), RessourceType::Html(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.tex"), RessourceType::Latex(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.yaml"), RessourceType::Yaml(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.yml"), RessourceType::Yaml(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.txt"), RessourceType::Text(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.css"), RessourceType::Css(file_content.clone()));
+        assert_eq!(RessourceType::match_ressource_type("./test/files/file.xyz"), RessourceType::Unknown(file_content.clone()));
     }
 }
