@@ -8,6 +8,7 @@ addons:
       - libcurl4-openssl-dev
       - libelf-dev
       - libdw-dev
+      - libbfd-dev
       - binutils-dev
       - cmake # also required for cargo-update
     sources:
@@ -41,7 +42,7 @@ deploy:
 
 after_success:
 # measure code coverage and upload to coveralls.io
-  - cargo coveralls --exclude-pattern ./src/cli.rs, ./src/logger/mod.rs, ./src/errors/mod.rs ./src/main.rs
+  - cargo coveralls --exclude-pattern ./src/cli.rs, ./src/logger/mod.rs, ./src/errors/mod.rs
 
 notifications:
   email: false
