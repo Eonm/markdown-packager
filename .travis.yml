@@ -26,8 +26,8 @@ os:
 sudo: false
 cache: cargo
 script:
-  - cargo build --release --verbose --all
   - cargo test --verbose --all
+  - cargo build --release --verbose --all
 deploy:
   provider: releases
   api_key: $GITHUB_API_KEY
@@ -42,7 +42,7 @@ deploy:
 
 after_success:
 # measure code coverage and upload to coveralls.io
-  - cargo coveralls --exclude-pattern ./src/cli.rs, ./src/logger/mod.rs, ./src/errors/mod.rs
+  - cargo coveralls
 
 notifications:
   email: false
