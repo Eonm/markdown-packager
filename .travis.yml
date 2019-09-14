@@ -41,7 +41,7 @@ deploy:
 
 after_success:
 # measure code coverage and upload to coveralls.io
-  - cargo coveralls
-    
+  - cargo coveralls --exclude-pattern ./src/cli.rs, ./src/logger/mod.rs, ./src/errors/mod.rs ./src/main.rs
+
 notifications:
   email: false
