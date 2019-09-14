@@ -66,3 +66,15 @@ pub fn get_download_dest_path(target: &str) -> Result<PathBuf, Box<error::Error>
 
     Ok(Path::new(&name).to_path_buf())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::Path;
+
+    #[test]
+    fn should_download() {
+        download("https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif", "/tmp/");
+        assert!(Path::new("/tmp/image.gif").exists())
+    }
+}
