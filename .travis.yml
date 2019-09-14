@@ -1,20 +1,47 @@
+sudo: required
 language: rust
+cache: cargo
+
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - binutils-dev
+      - cmake # also required for cargo-update
+    sources:
+      - kalakris-cmake
+
+before_script:
+  - export PATH=$HOME/.cargo/bin:$PATH
+  - cargo install cargo-update || echo "cargo-update already installed"
+  - cargo install cargo-travis || echo "cargo-travis already installed"
+  - cargo install-update -a # update outdated cached binaries
+
 os:
-- windows
-- linux
+  - windows
+  - linux
 sudo: false
 cache: cargo
 script:
-- cargo build --release --verbose --all
-- cargo test --verbose --all
+  - cargo build --release --verbose --all
+  - cargo test --verbose --all
 deploy:
   provider: releases
   api_key: $GITHUB_API_KEY
   file:
-  - target/release/markdown-packager
-  - target/release/markdown-packager.exe
+    - target/release/markdown-packager
+    - target/release/markdown-packager.exe
   skip_cleanup: true
   on:
     repo: Eonm/markdown-packager
     all_branches: true
     tags: true
+
+after_success:
+# measure code coverage and upload to coveralls.io
+  - cargo coveralls
+    
+notifications:
+  email: false
