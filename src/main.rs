@@ -93,35 +93,50 @@ mod tests {
     #[test]
     fn should_generate_linked_document() {
         let mut config = Config::new();
-        config = config.set_image_dir("/tmp/");
+
+        let expected_output = if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+            "![image](./image.jpeg)"
+        } else {
+            config = config.set_image_dir("/tmp/");
+            "![image](/tmp/image.jpeg)"
+        };
 
         let mut document = config.to_document("![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.jpeg)");
         document.link(None);
 
-        let expected_output = "![image](/tmp/image.jpeg)";
         let output_file = document.to_string();
-
         assert_eq!(output_file, expected_output)
     }
 
     #[test]
     fn should_generate_linked_document_with_header() {
         let mut config = Config::new();
-        config = config.set_image_dir("/tmp/");
+
+        let expected_output = if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+            "---\nentry: value\n---\n![image](./image.jpeg)"
+        } else {
+            config = config.set_image_dir("/tmp/");
+            "---\nentry: value\n---\n![image](/tmp/image.jpeg)"
+        };
 
         let mut document = config.to_document("---\nentry: value\n---\n![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.jpeg)");
         document.link(None);
 
-        let expected_output = "---\nentry: value\n---\n![image](/tmp/image.jpeg)";
         let output_file = document.to_string();
-
         assert_eq!(output_file, expected_output)
     }
 
     #[test]
     fn should_generate_embedded_document() {
         let mut config = Config::new();
-        config = config.set_image_dir("/tmp/");
+
+        if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+        } else {
+            config = config.set_image_dir("/tmp/");
+        };
 
         let mut document = config.to_document("![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)");
         document.embed(None);
@@ -135,7 +150,12 @@ mod tests {
     #[test]
     fn should_generate_embedded_document_with_header() {
         let mut config = Config::new();
-        config = config.set_image_dir("/tmp/");
+
+        if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+        } else {
+            config = config.set_image_dir("/tmp/");
+        };
 
         let mut document = config.to_document("---\nentry: value\n---\n![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)");
         document.embed(None);
@@ -149,7 +169,12 @@ mod tests {
     #[test]
     fn should_generate_embedded_document_with_header_and_extra_content() {
         let mut config = Config::new();
-        config = config.set_image_dir("/tmp/");
+
+        if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+        } else {
+            config = config.set_image_dir("/tmp/");
+        };
 
         let mut document = config.to_document("---\nentry: value\n---\n![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)");
         document.embed(Some(vec!("./test/files/fake_css.css", "./test/files/fake_header.yaml")));
