@@ -15,7 +15,7 @@ use pulldown_cmark_to_cmark::fmt::cmark;
 use crate::download::DownloadMod;
 use crate::embed::{RessourceType};
 
-#[derive(Clone)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Document<'a> {
     pub header: Option<(serde_yaml::Value)>,
     pub nodes: Vec<Event<'a>>,

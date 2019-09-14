@@ -13,7 +13,7 @@ use log::info;
 use tempdir::TempDir;
 use uuid::Uuid;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 pub enum DownloadMod {
     Erase,
     Keep,
