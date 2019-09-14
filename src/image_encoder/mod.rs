@@ -18,7 +18,7 @@ fn get_file_type(hex: &str) -> Result<&str, errors::CustomError> {
         return Ok("png");
     } else if hex.starts_with("47494638") {
         return Ok("gif");
-    } else if hex.contains("3c737667") && hex.starts_with("3c3f786d6c") {
+    } else if hex.contains("3c737667") && hex.starts_with("3c3f786d6c") || hex.starts_with("3c737667") {
         return Ok("svg+xml");
     }
 
