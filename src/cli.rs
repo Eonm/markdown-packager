@@ -26,6 +26,7 @@ pub fn build_cli() -> App<'static, 'static> {
             Arg::with_name("output")
                 .short("o")
                 .long("output")
+                .global("true")
                 .value_name("output_file")
                 .help("Output file")
                 .takes_value(true),
