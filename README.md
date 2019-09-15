@@ -22,7 +22,7 @@ sudo mv -u markdown-packager /usr/bin/
 The `pack` sub command allows you to embed files inside your markdown file.
 
 ```sh
-markdown-packager -i input_file.md pack style.css metadata.yml
+markdown-packager -i input_file.md pack style.css metadata.yml -o output_file.md
 ```
 
 **External files**
@@ -56,6 +56,10 @@ Supported image formats are :
 ## Link
 
 The `link` sub command allows you to link images inside your markdown file. Remote images are downloaded before being linked.
+
+```sh
+markdown-packager -i input.md link -o output_file.md
+```
 
 ```md
 ![Example image](https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg)
