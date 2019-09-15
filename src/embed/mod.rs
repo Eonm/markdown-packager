@@ -71,7 +71,11 @@ mod tests {
 
     #[test]
     fn should_match_ressource_type() {
-        let file_content = " \n".to_string();
+        let file_content = if cfg!(target_os = "windows") {
+            " \r\n".to_string()
+        } else {
+            " \n".to_string()
+        };
 
         assert_eq!(RessourceType::match_ressource_type("./test/files/file.js"), RessourceType::Javascript(file_content.clone()));
         assert_eq!(RessourceType::match_ressource_type("./test/files/file.md"), RessourceType::Md(file_content.clone()));
