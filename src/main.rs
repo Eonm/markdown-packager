@@ -184,4 +184,24 @@ mod tests {
 
         assert_eq!(output_file, expected_output)
     }
+
+    #[test]
+    fn should_not_panic_when_download_fails() {
+        let mut config = Config::new();
+
+        if cfg!(target_os = "windows") {
+            config = config.set_image_dir("./");
+        } else {
+            config = config.set_image_dir("/tmp/");
+        };
+
+        //This url doesn't exists : https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com
+        let mut document = config.to_document("![image](https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com)");
+        document.embed(None);
+
+        let expected_output = "![image](https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com)";
+        let output_file = document.to_string();
+
+        assert_eq!(output_file, expected_output)
+    }
 }
