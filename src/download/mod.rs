@@ -75,12 +75,17 @@ mod tests {
     #[test]
     fn should_download() {
         if cfg!(target_os = "windows") {
-            download("https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif", "./");
+            download(
+                "https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif",
+                "./",
+            );
             assert!(Path::new("./image.gif").exists())
         } else {
-            download("https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif", "/tmp/");
+            download(
+                "https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif",
+                "/tmp/",
+            );
             assert!(Path::new("/tmp/image.gif").exists())
-
         };
     }
 }

@@ -13,7 +13,7 @@ extern crate pulldown_cmark_to_cmark;
 use pulldown_cmark_to_cmark::fmt::cmark;
 
 use crate::download::DownloadMod;
-use crate::embed::{RessourceType};
+use crate::embed::RessourceType;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Document<'a> {

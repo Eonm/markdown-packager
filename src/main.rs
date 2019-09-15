@@ -2,6 +2,7 @@ extern crate clap;
 extern crate colored;
 
 mod cli;
+mod config;
 mod download;
 mod embed;
 mod errors;
@@ -11,7 +12,6 @@ mod image_linker;
 mod logger;
 mod markdown_document;
 mod yaml_header;
-mod config;
 use config::Config;
 
 use download::DownloadMod;
@@ -102,7 +102,9 @@ mod tests {
             "![image](/tmp/image.jpeg)"
         };
 
-        let mut document = config.to_document("![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.jpeg)");
+        let mut document = config.to_document(
+            "![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.jpeg)",
+        );
         document.link(None);
 
         let output_file = document.to_string();
@@ -138,7 +140,9 @@ mod tests {
             config = config.set_image_dir("/tmp/");
         };
 
-        let mut document = config.to_document("![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)");
+        let mut document = config.to_document(
+            "![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)",
+        );
         document.embed(None);
 
         let expected_output = "![image](data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH+EUNyZWF0ZWQgd2l0aCBHSU1QACwAAAAAAQABAAACAkQBADs=)";
@@ -177,7 +181,10 @@ mod tests {
         };
 
         let mut document = config.to_document("---\nentry: value\n---\n![image](https://github.com/Eonm/markdown-packager/raw/master/test/files/image.gif)");
-        document.embed(Some(vec!("./test/files/fake_css.css", "./test/files/fake_header.yaml")));
+        document.embed(Some(vec![
+            "./test/files/fake_css.css",
+            "./test/files/fake_header.yaml",
+        ]));
 
         let expected_output = "---\nentry: value\nnew_entry_1: entry_value_1\nnew_entries:\n  - entry_1\n  - entry_2\n---\n![image](data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH+EUNyZWF0ZWQgd2l0aCBHSU1QACwAAAAAAQABAAACAkQBADs=)\n\n<style>\np {background-color: red;}</style>\n";
         let output_file = document.to_string();
@@ -196,7 +203,8 @@ mod tests {
         };
 
         //This url doesn't exists : https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com
-        let mut document = config.to_document("![image](https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com)");
+        let mut document =
+            config.to_document("![image](https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com)");
         document.embed(None);
 
         let expected_output = "![image](https://461856a2-7faf-45aa-9da3-ebcd6c36e114.com)";

@@ -40,10 +40,16 @@ mod test_image_type {
     #[test]
     fn should_parse_yaml_header() {
         let markdown_input = "---\nvalue: val\n---\n\n# Title";
-        let expected_header : serde_yaml::Value =  serde_yaml::from_str("---\nvalue: val").unwrap();
-        assert_eq!(parse_yaml_header(markdown_input), (Some(expected_header), "\n# Title"));
+        let expected_header: serde_yaml::Value = serde_yaml::from_str("---\nvalue: val").unwrap();
+        assert_eq!(
+            parse_yaml_header(markdown_input),
+            (Some(expected_header), "\n# Title")
+        );
 
         let markdown_input_no_header = "# Title";
-        assert_eq!(parse_yaml_header(markdown_input_no_header), (None, "# Title"));
+        assert_eq!(
+            parse_yaml_header(markdown_input_no_header),
+            (None, "# Title")
+        );
     }
 }

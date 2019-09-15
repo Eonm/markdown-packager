@@ -2,7 +2,7 @@ use std::path::PathBuf;
 use std::str;
 
 use crate::colored::Colorize;
-use crate::download::{download, DownloadMod, get_download_dest_path};
+use crate::download::{download, get_download_dest_path, DownloadMod};
 
 use log::info;
 use url::Url;
@@ -82,8 +82,12 @@ mod linker_test {
         let input = "./image.jpeg";
         assert_eq!(link_image(input, DownloadMod::Keep, "./"), input);
 
-        let remote_image_file_url = "https://raw.githubusercontent.com/Eonm/markdown-packager/master/test/files/image.gif";
-        assert_eq!(link_image(remote_image_file_url, DownloadMod::Keep, "./test/files/"), "./test/files/image.gif");
+        let remote_image_file_url =
+            "https://raw.githubusercontent.com/Eonm/markdown-packager/master/test/files/image.gif";
+        assert_eq!(
+            link_image(remote_image_file_url, DownloadMod::Keep, "./test/files/"),
+            "./test/files/image.gif"
+        );
     }
 
     #[test]
@@ -94,7 +98,10 @@ mod linker_test {
 
     #[test]
     fn file_should_not_already_exists() {
-        let result = file_already_exists("https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg", "./test/files/");
+        let result = file_already_exists(
+            "https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg",
+            "./test/files/",
+        );
         assert_eq!(result, None);
     }
 }

@@ -1,5 +1,5 @@
-use crate::markdown_document::Document;
 use crate::download::DownloadMod;
+use crate::markdown_document::Document;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Config<'a> {
@@ -33,7 +33,7 @@ impl<'a> Config<'a> {
 #[cfg(test)]
 mod test_config {
     use super::*;
-    use pulldown_cmark::{Event, CowStr, Tag};
+    use pulldown_cmark::{CowStr, Event, Tag};
 
     #[test]
     fn should_set_image_dir() {
@@ -67,7 +67,11 @@ mod test_config {
         let document = config.to_document("test");
         let expected_document = Document {
             header: None,
-            nodes: vec!(Event::Start(Tag::Paragraph), Event::Text(CowStr::Borrowed("test")), Event::End(Tag::Paragraph)),
+            nodes: vec![
+                Event::Start(Tag::Paragraph),
+                Event::Text(CowStr::Borrowed("test")),
+                Event::End(Tag::Paragraph),
+            ],
             download_mod: DownloadMod::Keep,
             image_dir: "./",
         };

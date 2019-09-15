@@ -53,7 +53,9 @@ impl RessourceType {
                 let (_, body) = yaml_header::parse_yaml_header(&content);
                 body.to_owned()
             }
-            RessourceType::Javascript(content) => format!("<script>\n{}\n</script>\n", content.trim()),
+            RessourceType::Javascript(content) => {
+                format!("<script>\n{}\n</script>\n", content.trim())
+            }
             RessourceType::Css(content) => format!("<style>\n{}</style>\n", content.trim()),
             RessourceType::Html(content) => content,
             RessourceType::Latex(content) => content,
@@ -77,14 +79,41 @@ mod tests {
             " \n".to_string()
         };
 
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.js"), RessourceType::Javascript(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.md"), RessourceType::Md(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.html"), RessourceType::Html(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.tex"), RessourceType::Latex(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.yaml"), RessourceType::Yaml(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.yml"), RessourceType::Yaml(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.txt"), RessourceType::Text(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.css"), RessourceType::Css(file_content.clone()));
-        assert_eq!(RessourceType::match_ressource_type("./test/files/file.xyz"), RessourceType::Unknown(file_content.clone()));
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.js"),
+            RessourceType::Javascript(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.md"),
+            RessourceType::Md(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.html"),
+            RessourceType::Html(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.tex"),
+            RessourceType::Latex(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.yaml"),
+            RessourceType::Yaml(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.yml"),
+            RessourceType::Yaml(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.txt"),
+            RessourceType::Text(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.css"),
+            RessourceType::Css(file_content.clone())
+        );
+        assert_eq!(
+            RessourceType::match_ressource_type("./test/files/file.xyz"),
+            RessourceType::Unknown(file_content.clone())
+        );
     }
 }
