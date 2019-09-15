@@ -82,6 +82,8 @@ markdown-packager -i input_file.md pack my_bibliography.yaml -o output_file.md
 pandoc output_file.md -o output_file.pdf -F pandoc-citeproc
 ```
 
+Take a look at the [full example](./example/working_with_bibliography/README.md).
+
 **Embed images** :
 
 ```sh
