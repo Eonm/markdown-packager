@@ -20,7 +20,7 @@ pub fn link_image(input: &str, image_erase: DownloadMod, image_dir: &str) -> Str
     let image_path = match image_erase {
         DownloadMod::Keep => {
             info!("checking : {}", input);
-            match file_already_exist(&input, image_dir) {
+            match file_already_exists(&input, image_dir) {
                 Some(file) => {
                     info!(" {}\n", "✓".green());
                     info!("File already exists : {}\n", file);
@@ -41,7 +41,7 @@ pub fn link_image(input: &str, image_erase: DownloadMod, image_dir: &str) -> Str
     }
 }
 
-fn file_already_exist(url: &str, dest_path: &str) -> Option<String> {
+fn file_already_exists(url: &str, dest_path: &str) -> Option<String> {
     match Url::parse(url).unwrap().path_segments() {
         //by checking the last segment of url
         Some(segments) => {
@@ -70,5 +70,31 @@ fn file_already_exist(url: &str, dest_path: &str) -> Option<String> {
         )
     } else {
         None
+    }
+}
+
+#[cfg(test)]
+mod linker_test {
+    use super::*;
+
+    #[test]
+    fn should_only_process_url() {
+        let input = "./image.jpeg";
+        assert_eq!(link_image(input, DownloadMod::Keep, "./"), input);
+
+        let remote_image_file_url = "https://raw.githubusercontent.com/Eonm/markdown-packager/master/test/files/image.gif";
+        assert_eq!(link_image(remote_image_file_url, DownloadMod::Keep, "./test/files/"), "./test/files/image.gif");
+    }
+
+    #[test]
+    fn file_should_already_exists() {
+        let result = file_already_exists("https://example.com/image.jpeg", "./test/files/");
+        assert_eq!(result, Some("./test/files/image.jpeg".to_string()));
+    }
+
+    #[test]
+    fn file_should_not_already_exists() {
+        let result = file_already_exists("https://upload.wikimedia.org/wikipedia/commons/4/48/Markdown-mark.svg", "./test/files/");
+        assert_eq!(result, None);
     }
 }
