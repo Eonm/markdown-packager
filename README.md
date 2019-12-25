@@ -1,4 +1,4 @@
-<div class="center" style="text-align:center">
+<div class="center" align="center">
 
 # 📦 Markdown Packager
 
