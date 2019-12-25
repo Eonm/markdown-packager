@@ -7,6 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/Eonm/markdown-packager/badge.svg)](https://coveralls.io/github/Eonm/markdown-packager)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Eonm/markdown-packager/issues)
+[![dependency status](https://deps.rs/repo/github/eonm/markdown-packager/status.svg)](https://deps.rs/repo/github/eonm/markdown-packager)
 
 Link and embed files inside your markdown documents
 
