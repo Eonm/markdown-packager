@@ -1,11 +1,16 @@
+<div class="center" style="text-align:center">
+
+# 📦 Markdown Packager
+
+
 [![Build Status](https://travis-ci.org/Eonm/markdown-packager.svg?branch=master)](https://travis-ci.org/Eonm/markdown-packager)
 [![Coverage Status](https://coveralls.io/repos/github/Eonm/markdown-packager/badge.svg)](https://coveralls.io/github/Eonm/markdown-packager)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Eonm/markdown-packager/issues)
 
-# 📦 Markdown Packager
-
 Link and embed files inside your markdown documents
+
+</div>
 
 ## Install
 
