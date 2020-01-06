@@ -18,9 +18,9 @@ addons:
 
 before_script:
   - export PATH=$HOME/.cargo/bin:$PATH
-  - cargo install cargo-update || echo "cargo-update already installed"
-  - cargo install cargo-travis || echo "cargo-travis already installed"
-  - cargo install-update -a # update outdated cached binaries
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cargo install cargo-update || echo "cargo-update already installed" ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cargo install cargo-travis || echo "cargo-travis already installed" ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cargo install-update -a ; fi
 
 os:
   - windows
@@ -44,7 +44,7 @@ deploy:
 
 after_success:
 # measure code coverage and upload to coveralls.io
-  - cargo coveralls --exclude-pattern=src/main.rs,src/cli.rs,src/logger/mod.rs,src/errors/mod.rs,/.cargo
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cargo coveralls --exclude-pattern=src/main.rs,src/cli.rs,src/logger/mod.rs,src/errors/mod.rs,/.cargo ; fi
 
 notifications:
   email: false
