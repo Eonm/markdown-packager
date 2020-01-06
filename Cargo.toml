@@ -7,18 +7,18 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-pulldown-cmark = {version = "0.5.2", default-features = false}
-serde_yaml = "*"
-serde = "*"
-rustc-serialize = "*"
-log = "*"
-reqwest = "*"
-tempdir = "*"
-uuid = "*"
-colored = "*"
-url = "*"
-pulldown-cmark-to-cmark = "*"
-clap = "*"
+pulldown-cmark = {version = "0.6.1", default-features = false}
+serde_yaml = "0.8.11"
+serde = "1.0.104"
+rustc-serialize = "0.3.24"
+log = "0.4.8"
+reqwest = "0.9.24"
+tempdir = "0.3.7"
+uuid = "0.8.1"
+colored = "1.9.1"
+url = "2.1.0"
+pulldown-cmark-to-cmark = "1.2.4"
+clap = "2.33.0"
 
 [profile.dev]
 opt-level = 0
